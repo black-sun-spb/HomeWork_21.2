@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "bootstrap-pages"
+version = "0.1.0"
+description = "Bootstrap HTML prototype pages"
+authors = ["Твоё имя <email@example.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
