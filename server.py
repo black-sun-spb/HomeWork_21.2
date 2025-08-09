@@ -3,27 +3,27 @@ import urllib.parse
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        # Отдаём страницу "Контакты"
+        # Отдаём страницу contacts.html на любой GET
         self.send_response(200)
         self.send_header("Content-type", "text/html; charset=utf-8")
         self.end_headers()
         try:
-            with open("index.html", "r", encoding="utf-8") as f:
+            with open("contacts.html", "r", encoding="utf-8") as f:
                 html_content = f.read()
             self.wfile.write(html_content.encode("utf-8"))
         except FileNotFoundError:
-            self.wfile.write("<h1>Файл не найден</h1>".encode("utf-8"))
+            self.wfile.write("<h1>Файл contacts.html не найден</h1>".encode("utf-8"))
 
     def do_POST(self):
-        # Получаем длину данных
-        content_length = int(self.headers["Content-Length"])
+        # Получаем длину и читаем данные формы
+        content_length = int(self.headers.get("Content-Length", 0))
         post_data = self.rfile.read(content_length)
 
-        # Декодируем и выводим в консоль
+        # Разбираем данные формы и выводим в консоль
         decoded_data = urllib.parse.parse_qs(post_data.decode("utf-8"))
         print("Получены данные POST-запроса:", decoded_data)
 
-        # Отправляем ответ клиенту
+        # Отправляем ответ пользователю
         self.send_response(200)
         self.send_header("Content-type", "text/html; charset=utf-8")
         self.end_headers()
