@@ -31,6 +31,6 @@ class MyHandler(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     server_address = ("", 8080)  # localhost:8080
-    httpd = HTTPServer(server_address, MyHandler)
+    httpd = HTTPServer(server_address, MyHandler)  # type: ignore
     print("Сервер запущен на http://localhost:8080")
     httpd.serve_forever()
